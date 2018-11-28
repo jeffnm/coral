@@ -50,7 +50,7 @@ try{
 	exit;
 }
 // Check for earlier version of Resource Module.  With update of 1.3 the table definition changed.
-$query = "Select subscriptionStartDate from `$resource_databaseName`.`Resource`";
+$query = "Select subscriptionStartDate from `$resource_databaseName`.`ResourceAcquisition`";
 $result = mysqli_query($link, $query);
 	if ($result) {
 		// Previous tabel definition before Resources version 1.3
@@ -91,26 +91,27 @@ $result = mysqli_query($link, $query);
 		exit;
 	}
 
-	$query = "
-	SELECT DATE_FORMAT(`$resource_databaseName`.`Resource`.`$endDateName`, '%Y') AS `year`,
-	DATE_FORMAT(`$resource_databaseName`.`Resource`.`$endDateName`, '%M') AS `month`,
-	DATE_FORMAT(`$resource_databaseName`.`Resource`.`$endDateName`, '%y-%m-%d') AS `sortdate`,
-	DATE_FORMAT(`$resource_databaseName`.`Resource`.`$endDateName`, '%m/%d/%Y') AS `$endDateName`,
-	`$resource_databaseName`.`Resource`.`resourceID`, `$resource_databaseName`.`Resource`.`titleText`,
-	`$license_databaseName`.`License`.`shortName`,
-	`$license_databaseName`.`License`.`licenseID`, `$resource_databaseName`.`ResourceType`.`shortName` AS resourceTypeName, `$resource_databaseName`.`ResourceType`.`resourceTypeID`
-	FROM `$resource_databaseName`.`Resource`
-	LEFT JOIN `$resource_databaseName`.`ResourceLicenseLink` ON (`$resource_databaseName`.`Resource`.`resourceID` = `$resource_databaseName`.`ResourceLicenseLink`.`resourceAcquisitionID`)
-	LEFT JOIN `$license_databaseName`.`License` ON (`ResourceLicenseLink`.`licenseID` = `$license_databaseName`.`License`.`licenseID`)
-	INNER JOIN `$resource_databaseName`.`ResourceType` ON (`$resource_databaseName`.`Resource`.`resourceTypeID` = `$resource_databaseName`.`ResourceType`.`resourceTypeID`)
-	WHERE
-	`$resource_databaseName`.`Resource`.`archiveDate` IS NULL AND
-	`$resource_databaseName`.`Resource`.`$endDateName` IS NOT NULL AND
-	`$resource_databaseName`.`Resource`.`$endDateName` <> '00/00/0000' AND
-	`$resource_databaseName`.`Resource`.`$endDateName` BETWEEN (CURDATE() - INTERVAL " . $daybefore . " DAY) AND (CURDATE() + INTERVAL " . $dayafter . " DAY) ";
-	if ($resourceType) {
-		$query = $query . " AND `$resource_databaseName`.`Resource`.`resourceTypeID` IN ( ". $resourceType . " ) ";
-	}
+	 $query = "
+        SELECT DATE_FORMAT(`$resource_databaseName`.`ResourceAcquisition`.`$endDateName`, '%Y') AS `year`,
+        DATE_FORMAT(`$resource_databaseName`.`ResourceAcquisition`.`$endDateName`, '%M') AS `month`,
+        DATE_FORMAT(`$resource_databaseName`.`ResourceAcquisition`.`$endDateName`, '%y-%m-%d') AS `sortdate`,
+        DATE_FORMAT(`$resource_databaseName`.`ResourceAcquisition`.`$endDateName`, '%m/%d/%Y') AS `$endDateName`,
+        `$resource_databaseName`.`Resource`.`resourceID`, `$resource_databaseName`.`Resource`.`titleText`,
+        `$license_databaseName`.`License`.`shortName`,
+        `$license_databaseName`.`License`.`licenseID`, `$resource_databaseName`.`ResourceType`.`shortName` AS resourceTypeName, `$resource_databaseName`.`ResourceType`.`resourceTypeID`
+        FROM `$resource_databaseName`.`Resource`
+        LEFT JOIN `$resource_databaseName`.`ResourceAcquisition` ON (`$resource_databaseName`.`Resource`.`resourceID` = `$resource_databaseName`.`ResourceAcquisition`.`resourceID`)
+        LEFT JOIN `$resource_databaseName`.`ResourceLicenseLink` ON (`$resource_databaseName`.`Resource`.`resourceID` = `$resource_databaseName`.`ResourceLicenseLink`.`resourceAcquisitionID`)
+        LEFT JOIN `$license_databaseName`.`License` ON (`ResourceLicenseLink`.`licenseID` = `$license_databaseName`.`License`.`licenseID`)
+        INNER JOIN `$resource_databaseName`.`ResourceType` ON (`$resource_databaseName`.`Resource`.`resourceTypeID` = `$resource_databaseName`.`ResourceType`.`resourceTypeID`)
+        WHERE
+        `$resource_databaseName`.`Resource`.`archiveDate` IS NULL AND
+        `$resource_databaseName`.`ResourceAcquisition`.`$endDateName` IS NOT NULL AND
+        `$resource_databaseName`.`ResourceAcquisition`.`$endDateName` <> '00/00/0000' AND
+        `$resource_databaseName`.`ResourceAcquisition`.`$endDateName` BETWEEN (CURDATE() - INTERVAL " . $daybefore . " DAY) AND (CURDATE() + INTERVAL " . $dayafter . " DAY) ";
+        if ($resourceType) {
+                $query = $query . " AND `$resource_databaseName`.`Resource`.`resourceTypeID` IN ( ". $resourceType . " ) ";
+        }
 $query = $query . "ORDER BY `sortdate`, `$resource_databaseName`.`Resource`.`titleText`";
 $result = mysqli_query($link, $query) or die(_("Bad Query Failure: ".mysqli_error($link)));
 ?>
