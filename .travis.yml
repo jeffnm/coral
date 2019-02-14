@@ -1,12 +1,14 @@
 language: php
 php:
   - '7.1'
-  - '7.2'
-  - '7.3'
 
 services:
   - mysql
-  - mariadb
+
+
+before_script:
+  - cp ~/coral/common/configuration_sample.ini ~/coral/common/configuration.ini
+  - cp ~/coral/auth/configuration_sample.ini ~/coral/auth/configuration.ini
 
 before_install:
-  - mysql -e 'CREATE DATABASE coral_resources;'
+  - mysql -e 'CREATE DATABASE coral_auth_prod;'
