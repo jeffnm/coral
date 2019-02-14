@@ -7,8 +7,8 @@ services:
 
 
 before_script:
-  - cp ~/coral/common/configuration_sample.ini ~/coral/common/configuration.ini
-  - cp ~/coral/auth/configuration_sample.ini ~/coral/auth/configuration.ini
+  - cp common/configuration_sample.ini common/configuration.ini
+  - cp auth/configuration_sample.ini auth/configuration.ini
 
 before_install:
   - mysql -e 'CREATE DATABASE coral_auth_prod;'
