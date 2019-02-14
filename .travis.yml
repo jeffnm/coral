@@ -8,7 +8,7 @@ services:
 
 before_script:
   - cp common/configuration_sample.ini common/configuration.ini
-  - cp auth/configuration_sample.ini auth/configuration.ini
+  - cp auth/admin/configuration_sample.ini auth/admin/configuration.ini
 
 before_install:
   - mysql -e 'CREATE DATABASE coral_auth_prod;'
