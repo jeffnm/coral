@@ -105,8 +105,8 @@ if(isset($_COOKIE["lang"])) {
 	$GLOBALS['http_lang'] = $lang_name->getLanguage($codeL);
 } else {
 		$GLOBALS['http_lang'] = "en_US";
-	}
 }
+
 
 putenv("LC_ALL={$GLOBALS['http_lang']}");
 setlocale(LC_ALL, "{$GLOBALS['http_lang']}.utf8");
