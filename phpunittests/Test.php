@@ -5,13 +5,13 @@ class UserTest extends TestCase
 {
 // functions used in setup and tear down
   public function switchToTestEnvironment() {
-    $config = new \Config_Lite("admin/configuration.ini");
+    $config = new \Config_Lite("auth/admin/configuration.ini");
     $config->set("settings", "environment", "test");
     $config->save();
   }
 
   public function switchBackToProdEnvironment() {
-    $config = new \Config_Lite("admin/configuration.ini");
+    $config = new \Config_Lite("auth/admin/configuration.ini");
     $config->set("settings", "environment", "prod");
     $config->save();
   }
