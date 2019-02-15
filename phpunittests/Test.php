@@ -4,13 +4,15 @@ use PHPUnit\Framework\TestCase;
 class UserTest extends TestCase
 {
 // functions used in setup and tear down
-  public static function switchToTestEnvironment() {
+  public static function switchToTestEnvironment()
+  {
     $config = new \Config_Lite("auth/admin/configuration.ini");
     $config->set("settings", "environment", "test");
     $config->save();
   }
 
-  public static function switchBackToProdEnvironment() {
+  public static function switchBackToProdEnvironment()
+  {
     $config = new \Config_Lite("auth/admin/configuration.ini");
     $config->set("settings", "environment", "prod");
     $config->save();
@@ -29,9 +31,17 @@ class UserTest extends TestCase
   }
 
 // begin actual tests
-  public function testThatWeCanGetUserArray(){
+  public function testThatAllAsArrayReturnsArray()
+  {
     $user = new User;
 
     $this->assertInternalType('array', $user->allAsArray);
+  }
+
+  public function testThatAllAsArrayHasCorrectKeys()
+  {
+    $user = new User;
+
+    var_dump($user->allAsArray);
   }
 }
