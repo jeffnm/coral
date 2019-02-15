@@ -41,7 +41,11 @@ class UserTest extends TestCase
   public function testThatAllAsArrayHasCorrectKeys()
   {
     $user = new User;
+    $array = $user->allAsArray;
 
-    var_dump($user->allAsArray);
+    $this->assertArrayHasKey('loginID', $array[0]);
+    $this->assertArrayHasKey('password', $array[0]);
+    $this->assertArrayHasKey('passwordPrefix', $array[0]);
+    $this->assertArrayHasKey('adminInd', $array[0]);
   }
 }
