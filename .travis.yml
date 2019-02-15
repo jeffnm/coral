@@ -22,13 +22,13 @@ before_install:
   - mysql -e 'CREATE DATABASE coral_licensing_test;'
   - mysql -e 'CREATE DATABASE coral_usage_test;'
   - mysql -e 'CREATE DATABASE coral_reports_test;'
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_auth_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_resources_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_licensing_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_management_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_organizations_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_usage_test.* TO 'coral'@'localhost';"
-  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_reports_test.* TO 'coral'@'localhost';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_auth_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_resources_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_licensing_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_management_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_organizations_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_usage_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_reports_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
   - mysql -u root --password="" < phpunittests/test_database.sql
 
 
