@@ -5,10 +5,29 @@ php:
 services:
   - mysql
 
+# These env variables will eventually be needed to test both supported DB structures
+# env:
+#   - DB=mysql
+#   - DB=mariadb
 
 before_script:
   - cp common/configuration_sample.ini common/configuration.ini
   - cp auth/admin/configuration_sample.ini auth/admin/configuration.ini
 
 before_install:
-  - mysql -e 'CREATE DATABASE coral_auth_prod;'
+  - mysql -e 'CREATE DATABASE coral_auth_test;'
+  - mysql -e 'CREATE DATABASE coral_resources_test;'
+  - mysql -e 'CREATE DATABASE coral_management_test;'
+  - mysql -e 'CREATE DATABASE coral_organizations_test;'
+  - mysql -e 'CREATE DATABASE coral_usage_test;'
+  - mysql -e 'CREATE DATABASE coral_reports_test;'
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_auth_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_resources_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_licensing_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_management_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_organizations_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_usage_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_reports_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
+  - mysql -u root --password="" < phpunittests/test_database.sql
+
+
