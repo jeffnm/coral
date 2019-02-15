@@ -7,6 +7,6 @@ class UserTest extends TestCase
     {
         $user = new User;
 
-        $this->assertIsArray($user->allAsArray);
+        $this->assertInternalType('array', $user->allAsArray);
     }
 }
