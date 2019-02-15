@@ -17,12 +17,14 @@ class UserTest extends TestCase
   }
 
 // once at the beginning before any tests
-  protected function setUpBeforeClass(){
+  public static function setUpBeforeClass(): void
+  {
     $this->switchToTestEnvironment();
   }
 
 // once at the end after tests (why? not sure it's needed since build is destroyed after)
-  protected function tearDownAfterClass(){
+  public static function tearDownAfterClass(): void
+  {
     $this->switchBackToProdEnvironment();
   }
 
