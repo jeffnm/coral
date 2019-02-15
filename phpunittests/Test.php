@@ -23,7 +23,7 @@ class UserTest extends TestCase
 
 // once at the end after tests (why? not sure it's needed since build is destroyed after)
   protected function tearDownAfterClass(){
-    $this->switchToProdEnvironment
+    $this->switchBackToProdEnvironment();
   }
 
 // begin actual tests
