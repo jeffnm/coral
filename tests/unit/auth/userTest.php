@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
  */
 class UserTest extends TestCase
 {
@@ -40,6 +41,10 @@ class UserTest extends TestCase
   protected function tearDown() { }
 
   // begin actual tests
+  /**
+   * @runInSeparateProcess
+   * @preserveGlobalState disabled
+   */
   public function testThatAllAsArrayReturnsArray()
   {
     $user = new User;
