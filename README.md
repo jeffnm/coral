@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/jeffnm/coral.svg?branch=travis_ci_testing)](https://travis-ci.com/jeffnm/coral)
 **************************
 Installation
 These files are intended to be copied into the /coral/ directory on your web server.  The index should only display active links for the modules you have under the directory as long as the name matches the naming in Github (e.g. /coral/resources/)
