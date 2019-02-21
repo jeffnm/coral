@@ -98,7 +98,6 @@ class UserTest extends TestCase
 
     $user->processLogout();
 
-    $this->assertNotEquals('coral_test', $_SESSION['loginID']);
-    $this->assertArrayNotHasKey('loginID', $_SESSION);
+    $this->assertArrayNotHasKey('loginID', $_SESSION, 'processLogout failed to remove the session key for the loginID');
   }
 }
