@@ -17,7 +17,8 @@
 */
 
 
-class DynamicObject extends BaseObject {
+
+class DynamicObject extends Base_Object {
 
 	protected $properties = array();
 
