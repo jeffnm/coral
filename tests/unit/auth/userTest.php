@@ -62,13 +62,11 @@ class UserTest extends TestCase
     $this->assertArrayHasKey('password', $array[0]);
     $this->assertArrayHasKey('passwordPrefix', $array[0]);
     $this->assertArrayHasKey('adminInd', $array[0]);
-
-    var_dump($array[0]['passwordPrefix']);
   }
 
   public function testThatProcessLoginReturnsFalseWithEmptyPassword()
   {
-    $user = new User;
+    $user = new User(new NamedArguments(array('primaryKey' => 'coral_test')));
     $response = $user->processLogin('');
 
     $this->assertInternalType('boolean', $response);
@@ -77,8 +75,7 @@ class UserTest extends TestCase
 
   public function testThatProcessLoginReturnsTrueWithKnownUsernameAndPassword()
   {
-    $user = new User;
-    $user->loginID = "coral_test";
+    $user = new User(new NamedArguments(array('primaryKey' => 'coral_test')));
     $response = $user->processLogin('coral_test');
 
     $this->assertInternalType('boolean', $response);

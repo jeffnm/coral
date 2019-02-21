@@ -27,14 +27,14 @@ class DirectoryTest extends TestCase
   // once at the beginning before any tests
   public static function setUpBeforeClass(): void
   {
-    UserTest::switchToTestEnvironment();
+    DirectoryTest::switchToTestEnvironment();
     require 'resources/directory.php';
   }
 
   // once at the end after test class ends
   public static function tearDownAfterClass(): void
   {
-    UserTest::switchBackToProdEnvironment();
+    DirectoryTest::switchBackToProdEnvironment();
   }
 
   //setup and teardown functions
