@@ -31,7 +31,6 @@ class UserTest extends TestCase
   // once at the end after test class ends
   public static function tearDownAfterClass(): void
   {
-
   }
 
   //setup and teardown functions
