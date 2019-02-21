@@ -33,7 +33,7 @@ class UserTest extends TestCase
   {
   }
 
-  //setup and teardown functions
+  //setup and teardown functions that run before and after each test
   protected function setUp()
   {
     UserTest::switchToTestEnvironment();
@@ -79,6 +79,26 @@ class UserTest extends TestCase
 
     $this->assertInternalType('boolean', $response);
     $this->assertNotFalse($response);
+  }
 
+  public function testThatProcessLoginSetsSessionVariable()
+  {
+    $user = new User(new NamedArguments(array('primaryKey' => 'coral_test')));
+    $response = $user->processLogin('coral_test');
+
+    $this->assertEquals('coral_test', $_SESSION['loginID']);
+  }
+  public function testThatProcessLogoutRemovesSessionVariable()
+  {
+    $user = new User(new NamedArguments(array('primaryKey' => 'coral_test')));
+    $response = $user->processLogin('coral_test');
+
+    $this->assertEquals('coral_test', $_SESSION['loginID']);
+    $this->assertArrayHasKey('loginID', $_SESSION);
+
+    $user->processLogout();
+
+    $this->assertNotEquals('coral_test', $_SESSION['loginID']);
+    $this->assertArrayNotHasKey('loginID', $_SESSION);
   }
 }
