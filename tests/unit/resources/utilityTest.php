@@ -1,7 +1,7 @@
 <?php
 
 
-require "../../resources/admin/classes/common/Utility.php";
+require "../../../resources/admin/classes/common/Utility.php";
 
 use PHPUnit\Framework\TestCase;
 

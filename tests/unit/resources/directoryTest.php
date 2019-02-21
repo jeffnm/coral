@@ -1,6 +1,6 @@
 <?php
 
-require "../../resources/directory.php";
+require "../../../resources/directory.php";
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,4 +1,7 @@
 # Setup
+## Out of Date - TODO update this file with Travis CI / PHPunit instructions
+
+
 ## Install composer
 ### Create /bin folder
 `mkdir bin`

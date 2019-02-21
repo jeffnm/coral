@@ -30,6 +30,6 @@ before_install:
   - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_organizations_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
   - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_usage_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
   - mysql -e "GRANT CREATE, DROP, ALTER, SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON coral_reports_test.* TO 'coral_test'@'localhost' IDENTIFIED BY 'coral_test';"
-  - mysql -u root --password="" < phpunittests/test_database.sql
+  - mysql -u root --password="" < tests/_data/test_database.sql
 
 
