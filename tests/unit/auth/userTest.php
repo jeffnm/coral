@@ -41,7 +41,7 @@ class UserTest extends TestCase
     $this->assertInternalType('array', $user->allAsArray);
   }
 
-  public function testThatAllAsArrayHasCorrectKeys()
+  public function testThatAllAsArrayHasExpectedKeys()
   {
     $user = new User;
     $array = $user->allAsArray;
@@ -50,5 +50,25 @@ class UserTest extends TestCase
     $this->assertArrayHasKey('password', $array[0]);
     $this->assertArrayHasKey('passwordPrefix', $array[0]);
     $this->assertArrayHasKey('adminInd', $array[0]);
+  }
+
+  public function testThatProcessLoginReturnsFalseWithNoPassword()
+  {
+    $user = new User;
+    $response = $user->processLogin();
+
+    $this->assertInternalType('boolean', $response);
+    $this->assertFalse($response);
+  }
+
+  public function testThatProcessLoginReturnsTrueWithKnownUsernameAndPassword()
+  {
+    $user = new User;
+    $user->loginID = "coral_test";
+    $response = $user->processLogin('coral_test');
+
+    $this->assertInternalType('boolean', $response);
+    $this->assertNotFalse($response);
+
   }
 }
