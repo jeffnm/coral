@@ -61,6 +61,8 @@ class UserTest extends TestCase
     $this->assertArrayHasKey('password', $array[0]);
     $this->assertArrayHasKey('passwordPrefix', $array[0]);
     $this->assertArrayHasKey('adminInd', $array[0]);
+
+    var_dump($array[0]['passwordPrefix']);
   }
 
   public function testThatProcessLoginReturnsFalseWithEmptyPassword()

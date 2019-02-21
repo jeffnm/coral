@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
  */
 class DirectoryTest extends TestCase
 {
@@ -39,6 +40,7 @@ class DirectoryTest extends TestCase
   //setup and teardown functions
   protected function setUp() { }
   protected function tearDown() { }
+
     public function testCostToInteger() {
         $this->assertSame(1052.0, cost_to_integer(10.52));
     }
