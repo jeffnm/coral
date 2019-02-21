@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../../auth/directory.php';
+// require_once '../../../auth/directory.php';
 
 use PHPUnit\Framework\TestCase;
 
