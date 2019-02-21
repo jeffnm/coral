@@ -9,8 +9,10 @@
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
     <testsuites>
-        <testsuite name="unit">
+        <testsuite name="unitAuth">
           <directory suffix="Test.php">tests/unit/auth</directory>
+        </testsuite>
+        <testsuite name="unitResources">
           <directory suffix="Test.php">tests/unit/resources</directory>
         </testsuite>
     </testsuites>

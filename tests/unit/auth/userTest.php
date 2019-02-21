@@ -1,12 +1,13 @@
 <?php
 
-include_once 'auth/directory.php';
-
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @runTestsInSeparateProcesses
+ */
 class UserTest extends TestCase
 {
-// functions used in setup and tear down
+  // functions used in setup and tear down
   public static function switchToTestEnvironment()
   {
     $config = new \Config_Lite("auth/admin/configuration.ini");
@@ -21,19 +22,24 @@ class UserTest extends TestCase
     $config->save();
   }
 
-// once at the beginning before any tests
+  // once at the beginning before any tests
   public static function setUpBeforeClass(): void
   {
     UserTest::switchToTestEnvironment();
+    require 'auth/directory.php';
   }
 
-// once at the end after tests (why? not sure it's needed since build is destroyed after)
+  // once at the end after test class ends
   public static function tearDownAfterClass(): void
   {
     UserTest::switchBackToProdEnvironment();
   }
 
-// begin actual tests
+  //setup and teardown functions
+  protected function setUp() { }
+  protected function tearDown() { }
+
+  // begin actual tests
   public function testThatAllAsArrayReturnsArray()
   {
     $user = new User;
@@ -52,10 +58,10 @@ class UserTest extends TestCase
     $this->assertArrayHasKey('adminInd', $array[0]);
   }
 
-  public function testThatProcessLoginReturnsFalseWithNoPassword()
+  public function testThatProcessLoginReturnsFalseWithEmptyPassword()
   {
     $user = new User;
-    $response = $user->processLogin();
+    $response = $user->processLogin('');
 
     $this->assertInternalType('boolean', $response);
     $this->assertFalse($response);
