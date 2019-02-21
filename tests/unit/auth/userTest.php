@@ -26,25 +26,26 @@ class UserTest extends TestCase
   // once at the beginning before any tests
   public static function setUpBeforeClass(): void
   {
-    UserTest::switchToTestEnvironment();
-    require 'auth/directory.php';
   }
 
   // once at the end after test class ends
   public static function tearDownAfterClass(): void
   {
-    UserTest::switchBackToProdEnvironment();
+
   }
 
   //setup and teardown functions
-  protected function setUp() { }
-  protected function tearDown() { }
+  protected function setUp()
+  {
+    UserTest::switchToTestEnvironment();
+    require 'auth/directory.php';
+  }
+  protected function tearDown()
+  {
+    UserTest::switchBackToProdEnvironment();
+  }
 
   // begin actual tests
-  /**
-   * @runInSeparateProcess
-   * @preserveGlobalState disabled
-   */
   public function testThatAllAsArrayReturnsArray()
   {
     $user = new User;

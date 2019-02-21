@@ -12,14 +12,14 @@ class DirectoryTest extends TestCase
   // functions used in setup and tear down
   public static function switchToTestEnvironment()
   {
-    $config = new \Config_Lite("auth/admin/configuration.ini");
+    $config = new \Config_Lite("resources/admin/configuration.ini");
     $config->set("settings", "environment", "test");
     $config->save();
   }
 
   public static function switchBackToProdEnvironment()
   {
-    $config = new \Config_Lite("auth/admin/configuration.ini");
+    $config = new \Config_Lite("resources/admin/configuration.ini");
     $config->set("settings", "environment", "prod");
     $config->save();
   }
